@@ -1,17 +1,35 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import Usuario from "./components/Usuario";
+import FormularioInicioSesion from "./components/FormularioInicioSesion";
+import Contador from "./components/ContadorFuncional.jsx";
+import "./index.css";
+import Boton from "./elements/Boton";
+import EjemploUseReducer from "./components/EjemploUseReducer";
+const sesion = true;
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const App = () => {
+  const [sesion, setSesion] = useState(false);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  return (
+    <div className="contenedor">
+      {sesion === true ? (
+        <div>
+          <Usuario />
+          {/* <Contador cantidadIncrementar={10} cantidadDisminuir={2} />
+          <Boton marginTop onClick={() => setSesion(false)}>
+            Cerrar Sesion
+          </Boton> */}
+          <EjemploUseReducer />
+        </div>
+      ) : (
+        <div>
+          <FormularioInicioSesion setSesion={setSesion} />
+          {/* <button onClick={() => setSesion(true)}>Iniciar Sesion</button> */}
+        </div>
+      )}
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));
